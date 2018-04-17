@@ -1,0 +1,125 @@
+/**
+ * Created by jiangjianming@bmkp.cn on 2018/4/17.
+ */
+/*
+ * 各大行星的距离S，半径R，公转周期 .以地球为1；
+ * 水星 S:0.387,   R:.38     P:0.23
+ * 金星 S:0.723,   R:.95     P:0.61
+ * 地球 S:1.000,   R:1;      P:1
+ * 火星 S:1.524,   R:.53     P:1.8
+ * 木星 S:5.205    R:11.21   P:11.8
+ * 土星 S:9.576    R:9.54    P:29.4
+ * 天王星S:19.18   R:4.01    P:84
+ * 海王星S:30.13   R:3.83    p:.44
+ */
+=size($w,$h:$w)
+  height: $h
+  width: $w
+=border
+  border-radius: 50%
+  border: 1px solid #a9a6a6
+=item-center
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%,-50%)
+=track-box
+  +border
+  +item-center
+
+/*所在轨道的半径,背景图地址，星球大小*/
+=palnet-postion($trackW, $bgUrl,$w:.2rem)
+  position: absolute
+  top: 50%
+  margin-top: -($w / 2)
+  left: 50%
+  margin-left:  -($trackW + $w) / 2
+  z-index: 2
+  +size($w)
+  background-size: $w $w
+  border-radius: 50%
+  background-image: url($bgUrl)
+  transform-origin: ($trackW + $w) / 2 $w/2
+
+body
+  margin: 0
+  height: 100vh
+  display: flex
+  flex-direction: column
+  justify-content: center
+  #galaxy
+    height: 50%
+    width: 3.75rem
+    background-color: #333
+    margin: 0 auto
+    .sun
+      +size(.5rem)
+      background-color: #FD8F02
+      border-radius: 50%
+      box-shadow: 0 0 .1rem .05rem rgb(254,171,5)
+      +item-center
+
+
+    .mercury-track
+      +size(.38rem)
+      +track-box
+    .mercury
+      +palnet-postion(0.38rem, '../images/mercury.png',.2rem)
+      animation: ration .23s * 4 linear infinite
+
+
+    .venus-track
+      +size(0.72rem)
+      +track-box
+    .venus
+      +palnet-postion(0.72rem, '../images/venus.png',.2rem)
+      animation: ration .61s * 4 linear infinite
+
+    .earth-track
+      +size(1rem)
+      +track-box
+    .earth
+      +palnet-postion(1rem, '../images/earth.png',.22rem)
+      animation: ration 1s * 4 linear infinite
+
+    .mars-track
+        +size(1.5rem)
+        +track-box
+    .mars
+      +palnet-postion(1.5rem, '../images/mars.png',.22rem)
+      animation: ration 1.8s * 4 linear infinite
+
+    .jupiter-track
+      +size(5.2rem)
+      +track-box
+    .jupiter
+      +palnet-postion(5.2rem, '../images/jupiter.png',.22rem)
+      animation: ration 11.8s * 4 linear infinite
+
+    .saturn-track
+      +size(5.2rem)
+      +track-box
+    .saturn
+      +palnet-postion(5.2rem, '../images/saturn.png',.22rem)
+      animation: ration 29.4s * 4 linear infinite
+
+
+    .uranus-track
+      +size(2.7rem)
+      +track-box
+    .uranus
+      +palnet-postion(2.7rem, '../images/uranus.png',.22rem)
+      animation: ration 84s * 4 linear infinite
+
+
+    .neptune-track
+      +size(2.7rem)
+      +track-box
+    .neptune
+      +palnet-postion(2.7rem, '../images/neptune.png',.22rem)
+      animation: ration .44s * 4 linear infinite
+
+
+@keyframes ration
+  to
+    transform: rotate(360deg)
